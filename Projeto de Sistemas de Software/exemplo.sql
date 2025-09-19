@@ -1,3 +1,6 @@
+-- Compilador SQL Online
+-- https://www.programiz.com/sql/online-compiler
+
 -- LIMPEZA DAS TABELAS EXISTENTES
 DROP TABLE IF EXISTS OrderItems;
 DROP TABLE IF EXISTS Orders;
@@ -64,4 +67,5 @@ INSERT INTO Orders VALUES
 INSERT INTO OrderItems VALUES
   (1,1,1,2),(2,1,2,3),  -- pedido 1 (Ana)
   (3,2,3,1),            -- pedido 2 (Ana)
+
   (4,3,1,1),(5,3,2,1);  -- pedido 3 (Bruno)
