@@ -1,3 +1,6 @@
+-- Compilador SQL Online
+-- https://www.programiz.com/sql/online-compiler
+
 -- 1ª QUESTÃO
 -- Primeiro, precisamos de um lugar para guardar nossos contatos.
 -- Complete o comando abaixo para CRIAR uma tabela chamada "Contatos".
