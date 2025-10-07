@@ -1,0 +1,16 @@
+/* --- Responsividade e Media Queries --- */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+
+    /* A navegação vira uma coluna em telas menores */
+    .cabecalho-principal nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* O grid quebra para uma única coluna */
+    .cardapio-grid {
+        grid-template-columns: 1fr;
+    }
+}

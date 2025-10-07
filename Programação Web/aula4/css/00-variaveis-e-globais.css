@@ -1,0 +1,23 @@
+/* --- Variáveis e Boas Práticas (Conceito: Variáveis CSS) --- */
+:root {
+    --cor-primaria: #c0392b; /* Vermelho escuro */
+    --cor-secundaria: #27ae60; /* Verde */
+    --cor-texto: #333333; /* Cinza escuro para texto */
+    --cor-fundo: #fdfaf6;
+    --fonte-principal: Arial, Helvetica, sans-serif;
+    --sombra-padrao: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Estilos Globais e Box Model --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Conceito: Propriedade box-sizing */
+}
+
+body {
+    font-family: var(--fonte-principal);
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
+    line-height: 1.6;
+}

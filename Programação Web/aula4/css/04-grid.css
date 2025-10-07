@@ -1,0 +1,7 @@
+/* --- Cardápio (Conceito: Grid Layout) --- */
+.cardapio-grid {
+    display: grid;
+    /* Cria colunas responsivas que se adaptam ao espaço disponível */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}

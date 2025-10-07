@@ -1,0 +1,44 @@
+/* --- Estrutura e Layout Principal (Box Model) --- */
+header, main, footer, section {
+    width: 90%;
+    max-width: 960px;
+    margin: 20px auto; /* Margin auto centraliza elementos de bloco com largura definida */
+    padding: 20px;
+}
+
+.cabecalho-principal {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: var(--sombra-padrao);
+}
+
+#promocao {
+    border-radius: 8px;
+    text-align: center;
+    border: 2px dashed var(--cor-primaria);
+    background-color: rgba(224, 83, 64, 0.1);
+}
+
+.item-cardapio {
+    background-color: white;
+    border: 1px solid #eee;
+    padding: 15px;
+    text-align: center;
+    box-shadow: var(--sombra-padrao);
+    border-radius: 8px;
+}
+
+.item-cardapio img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.item-cardapio .preco {
+    font-weight: bold;
+    color: var(--cor-secundaria);
+    display: block; /* Conceito: Display */
+    margin-top: 10px;
+}

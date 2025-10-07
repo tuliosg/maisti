@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esquina do Sabor - A Melhor Lanchonete</title>
+    <link rel="stylesheet" href="css/00-variaveis-e-globais.css">
+    <link rel="stylesheet" href="css/01-seletores-e-texto.css">
+    <link rel="stylesheet" href="css/02-layout-e-boxmodel.css">
+    <link rel="stylesheet" href="css/03-flexbox.css">
+    <link rel="stylesheet" href="css/04-grid.css">
+    <link rel="stylesheet" href="css/05-formularios.css">
+    <link rel="stylesheet" href="css/06-efeitos-visuais.css">
+    <link rel="stylesheet" href="css/07-responsividade.css">
+</head>
+<body>
+
+    <header class="cabecalho-principal">
+        <img src="imagens/logo.png" alt="Logomarca da Esquina do Sabor" id="logo">
+        <h1>Esquina do Sabor</h1>
+        <nav>
+            <ul>
+                <li><a href="#promocao">Promoções</a></li>
+                <li><a href="#cardapio">Cardápio</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="promocao" style="background-color: #fff8e1;"> <h2>Promoção do Dia!</h2>
+            <p>Na compra de qualquer pastel, o <strong>caldo de cana</strong> sai pela metade do preço!</p>
+            <p>Aproveite já esta oferta por tempo limitado.</p>
+        </section>
+
+        <section id="cardapio" class="secao-cardapio">
+            <h2>Nosso Cardápio</h2>
+            <div class="cardapio-grid">
+                <article class="item-cardapio">
+                    <img src="imagens/pastel.png" alt="Um pastel de queijo dourado e crocante.">
+                    <h3>Pastel de Queijo</h3>
+                    <p>Crocante por fora, cremoso por dentro. <span class="preco">R$ 7,00</span></p>
+                </article>
+                <article class="item-cardapio">
+                    <img src="imagens/coxinha.png" alt="Uma coxinha de frango bem recheada.">
+                    <h3>Coxinha de Frango</h3>
+                    <p>A tradicional receita brasileira com muito recheio. <span class="preco">R$ 6,00</span></p>
+                </article>
+                <article class="item-cardapio">
+                    <img src="imagens/caldo-de-cana.png" alt="Um copo de caldo de cana gelado com limão.">
+                    <h3>Caldo de Cana</h3>
+                    <p>Gelado e refrescante, moído na hora. <span class="preco">R$ 5,00</span></p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contato">
+            <h2>Faça seu Pedido</h2>
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Seus Dados</legend>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
+
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" required pattern="[0-9]{10,11}" placeholder="Apenas números">
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Seu Pedido</legend>
+                    <label for="item">Escolha o item:</label>
+                    <select id="item" name="item">
+                        <option value="pastel">Pastel de Queijo</option>
+                        <option value="coxinha">Coxinha de Frango</option>
+                        <option value="caldo">Caldo de Cana</option>
+                    </select>
+
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="number" id="quantidade" name="quantidade" min="1" max="10" value="1">
+
+                    <p>Para viagem?</p>
+                    <input type="radio" id="viagem_sim" name="viagem" value="sim"> <label for="viagem_sim">Sim</label>
+                    <input type="radio" id="viagem_nao" name="viagem" value="nao" checked> <label for="viagem_nao">Não</label>
+                </fieldset>
+                
+                <button type="submit">Enviar Pedido</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Esquina do Sabor. Todos os direitos reservados.</p>
+        <p>Aracaju, Sergipe</p>
+    </footer>
+
+</body>
+</html>

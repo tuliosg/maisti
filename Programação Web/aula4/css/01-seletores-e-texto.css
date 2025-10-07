@@ -1,0 +1,30 @@
+/* --- Seletores de Tag, Cores e Propriedades de Texto --- */
+h1, h2, h3 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: var(--cor-primaria);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; border-bottom: 2px solid var(--cor-secundaria); padding-bottom: 0.5rem; margin-top: 2rem; }
+p { font-size: 1em; margin-bottom: 1rem; }
+a { text-decoration: none; color: var(--cor-secundaria); font-weight: bold; }
+
+/* --- Exemplos de Combinadores --- */
+
+/* Seletor de Descendente (strong dentro de #promocao) */
+#promocao strong {
+    color: var(--cor-primaria);
+}
+
+/* Seletor de Irmão Adjacente (o primeiro 'p' logo após um 'h2' dentro de #promocao) */
+#promocao h2 + p {
+    font-size: 1.1em;
+    font-style: italic;
+}
+#logo {
+    display: block;
+    margin: 1rem auto;
+    max-width: 150px;
+}

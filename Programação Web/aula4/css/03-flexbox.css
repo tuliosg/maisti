@@ -1,0 +1,13 @@
+/* --- Cabeçalho e Navegação (Conceito: Flexbox) --- */
+.cabecalho-principal nav ul {
+    list-style: none;
+    display: flex; /* Ativando o Flexbox */
+    justify-content: center; /* Alinha os itens no centro do eixo principal */
+    gap: 20px;
+}
+
+/* Seletor de Filho (>) */
+.cabecalho-principal nav > ul > li > a {
+    padding: 10px 15px;
+    border-radius: 5px;
+}
