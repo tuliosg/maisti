@@ -29,26 +29,26 @@ Cada projeto que você salva no GitHub é chamado de **repositório**, uma estru
 
 ### Configurações iniciais
 Vamos à criação do seu primeiro repositório:
-1. **Acesse a aba "Repositories"**
+1. **Acesse a aba "Repositories"**  
    
    ![Aba repositórios](./imgs/image.png)
 
-2. **Clique no botão "New"**
+2. **Clique no botão "New"**  
    
    ![Botão new](./imgs/image-1.png)
 
-3. **Insira o nome e descrição do repositório**
+3. **Insira o nome e descrição do repositório**  
    O nome do repositório deve ser curto e objetivo. Além disso, esse nome não pode contar com espaços em branco, acentos ou caracteres especiais.
    Já a descrição pode ser mais longa (até 350 caracteres), servindo para apresentar resumidamente o seu repositório. Na descrição você pode escrever normalmente, sem se preocupar com acentos e espaços.
 
    ![Descrição do repositório](./imgs/image-2.png)
 
-4. **Escolha se o repositório será público ou privado**
+4. **Escolha se o repositório será público ou privado**  
    Caso você queira que os materiais inseridos no repositório sejam públicos, ou seja, qualquer pessoa na internet possa acessar, você deve optar por um repositório **público**. No caso materiais ou códigos que você deseje guardar apenas para você, selecione a opção de repositório privado.
 
    ![Visibilidade do repositório](./imgs/image-3.png)
 
-5. **Adicione um arquivo README no seu repositório**
+5. **Adicione um arquivo README no seu repositório**  
    O arquivo README (LEIA-ME, em português) serve comunicar informações importantes do seu repositório. Pensando em um repositório que armazena um projeto, geralmente é interessante acrescentar:
    * O que o projeto faz
    * Por que o projeto é útil
@@ -58,11 +58,12 @@ Vamos à criação do seu primeiro repositório:
   
    ![README](./imgs/image-4.png)
 
-6. **Crie o respositório**
+6. **Crie o respositório**  
+   
    ![Cria repositório](./imgs/image-5.png)
 
 ### Inserindo novos arquivos
-
+Como já foi mencionado, os repositórios funcionam de um modo parecido com pastas no computador. Então, dentre outras funcionalidades, podemos armazenar arquivos nesses repositórios.
 
 ### Criando pastas
 
