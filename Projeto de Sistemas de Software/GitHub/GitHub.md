@@ -30,9 +30,11 @@ Cada projeto que você salva no GitHub é chamado de **repositório**, uma estru
 ### Configurações iniciais
 Vamos à criação do seu primeiro repositório:
 1. **Acesse a aba "Repositories"**
+   
    ![Aba repositórios](./imgs/image.png)
 
 2. **Clique no botão "New"**
+   
    ![Botão new](./imgs/image-1.png)
 
 3. **Insira o nome e descrição do repositório**
