@@ -1,5 +1,5 @@
 const prompt = require('prompt-sync')();
-const fs = require('fs');
+const Database = require('better-sqlite3'); 
 
 class Contato {
     constructor(nomeContato, emailContato, telefoneContato) {
@@ -12,12 +12,14 @@ class Contato {
 class Interface {
     pausar() {
         console.log("\n-------------------------------------------");
-        
         prompt("Pressione ENTER para continuar...");
-        console.clear();
     }
 
     exibirMenu() {
+        console.clear(); 
+        console.log("\n===========================================");
+        console.log("        BEM-VINDO AO SISTEMA DE AGENDA      ");
+        console.log("===========================================");
         console.log("\n---- MENU ----");
         console.log("1 - Listar Contatos");
         console.log("2 - Adicionar Contato");
@@ -30,63 +32,58 @@ class Interface {
 
 class Agenda {
     constructor() {
-        this.caminhoArquivo = 'agenda.json';
-        this.contatos = this.carregarArquivo();
-    }
-
-    carregarArquivo() {
-        try {
-            if (fs.existsSync(this.caminhoArquivo)) {
-                const dados = fs.readFileSync(this.caminhoArquivo, 'utf-8');
-                return JSON.parse(dados);
-            }
-        } catch (erro) {
-            console.log("Erro ao carregar arquivo, iniciando agenda vazia.");
-        }
-        return [];
-    }
-
-    salvarArquivo() {
-        const dados = JSON.stringify(this.contatos, null, 2);
-        fs.writeFileSync(this.caminhoArquivo, dados, 'utf-8');
+        this.db = new Database('agenda.db');
+        
+        this.db.prepare(`
+            CREATE TABLE IF NOT EXISTS contatos (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome TEXT,
+                email TEXT,
+                telefone TEXT
+            )
+        `).run();
     }
 
     adicionar(contato) {
-        this.contatos.push(contato);
-        this.salvarArquivo();
+        const stmt = this.db.prepare('INSERT INTO contatos (nome, email, telefone) VALUES (?, ?, ?)');
+        stmt.run(contato.nome, contato.email, contato.telefone);
         console.log("\n✅ Contato adicionado com sucesso!");
     }
 
     listar() {
         console.log("\n======= 📖 LISTA DE CONTATOS =======");
-        if (this.contatos.length === 0) {
+        
+        const lista = this.db.prepare('SELECT * FROM contatos').all();
+
+        if (lista.length === 0) {
             console.log("\nA agenda está vazia no momento.");
         } else {
-            this.contatos.forEach((c, index) => {
-                console.log(`\n[Contato ${index}]\nNOME: ${c.nome.toUpperCase()}`);
+            lista.forEach((c) => {
+                console.log(`\n[ID: ${c.id}]\nNOME: ${c.nome.toUpperCase()}`);
                 console.log(`   📧 Email: ${c.email}`);
                 console.log(`   📞 Tel:   ${c.telefone}`);
                 console.log("-------------------------------------------");
             });
         }
+        return lista; 
     }
 
-    editar(index, nNome, nEmail, nTel) {
-        if (this.contatos[index]) {
-            this.contatos[index].nome = nNome;
-            this.contatos[index].email = nEmail;
-            this.contatos[index].telefone = nTel;
-            this.salvarArquivo();
+    editar(id, nNome, nEmail, nTel) {
+        const stmt = this.db.prepare('UPDATE contatos SET nome = ?, email = ?, telefone = ? WHERE id = ?');
+        const resultado = stmt.run(nNome, nEmail, nTel, id);
+
+        if (resultado.changes > 0) {
             console.log("\n✅ Informações atualizadas com sucesso!");
         } else {
             console.log("\n❌ Erro: Contato não encontrado.");
         }
     }
 
-    excluir(index) {
-        if (this.contatos[index]) {
-            this.contatos.splice(index, 1);
-            this.salvarArquivo();
+    excluir(id) {
+        const stmt = this.db.prepare('DELETE FROM contatos WHERE id = ?');
+        const resultado = stmt.run(id);
+
+        if (resultado.changes > 0) {
             console.log("\n✅ Contato removido com sucesso!");
         } else {
             console.log("\n❌ Erro: Contato não encontrado.");
@@ -105,13 +102,12 @@ console.log("===========================================");
 
 while (opcao !== 0) {
     minhaInterface.exibirMenu(); 
-    
     opcao = parseInt(prompt("Escolha uma opção: "));
 
     switch (opcao) {
         case 1:
             minhaAgenda.listar();
-            minhaInterface.pausar(); 
+            minhaInterface.pausar();
             break;
 
         case 2:
@@ -126,23 +122,19 @@ while (opcao !== 0) {
 
         case 3:
             minhaAgenda.listar();
-            if (minhaAgenda.contatos.length > 0) {
-                const idEd = parseInt(prompt("ID do contato para editar: "));
-                console.log("\n--- NOVOS DADOS ---");
-                const nNome = prompt("Novo Nome: ");
-                const nEmail = prompt("Novo Email: ");
-                const nTel = prompt("Novo Telefone: ");
-                minhaAgenda.editar(idEd, nNome, nEmail, nTel);
-            }
+            const idEd = parseInt(prompt("ID do contato para editar: "));
+            console.log("\n--- NOVOS DADOS ---");
+            const nNome = prompt("Novo Nome: ");
+            const nEmail = prompt("Novo Email: ");
+            const nTel = prompt("Novo Telefone: ");
+            minhaAgenda.editar(idEd, nNome, nEmail, nTel);
             minhaInterface.pausar();
             break;
 
         case 4:
             minhaAgenda.listar();
-            if (minhaAgenda.contatos.length > 0) {
-                const idEx = parseInt(prompt("ID do contato para excluir: "));
-                minhaAgenda.excluir(idEx);
-            }
+            const idEx = parseInt(prompt("ID do contato para excluir: "));
+            minhaAgenda.excluir(idEx);
             minhaInterface.pausar();
             break;
 
