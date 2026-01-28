@@ -1,3 +1,8 @@
+/*
+A execução deste código requer a instalação do pacote 'better-sqlite3'.
+Instale-o usando o seguinte comando no terminal:
+npm install better-sqlite3
+*/
 const prompt = require('prompt-sync')();
 const Database = require('better-sqlite3'); 
 
