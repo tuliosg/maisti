@@ -36,6 +36,7 @@ class Interface {
 }
 
 class Agenda {
+    // Inicializa o banco de dados e cria a tabela de contatos, se não existir
     constructor() {
         this.db = new Database('agenda.db');
         
@@ -49,16 +50,22 @@ class Agenda {
         `).run();
     }
 
+    // Adiciona um novo contato ao banco de dados - CREATE
     adicionar(contato) {
-        const stmt = this.db.prepare('INSERT INTO contatos (nome, email, telefone) VALUES (?, ?, ?)');
-        stmt.run(contato.nome, contato.email, contato.telefone);
+        const comando = this.db.prepare(
+            'INSERT INTO contatos (nome, email, telefone) VALUES (?, ?, ?)'
+        );
+        comando.run(contato.nome, contato.email, contato.telefone);
         console.log("\n✅ Contato adicionado com sucesso!");
     }
 
+    // Lista todos os contatos do banco de dados - READ
     listar() {
         console.log("\n======= 📖 LISTA DE CONTATOS =======");
         
-        const lista = this.db.prepare('SELECT * FROM contatos').all();
+        const lista = this.db.prepare(
+            'SELECT * FROM contatos'
+        ).all();
 
         if (lista.length === 0) {
             console.log("\nA agenda está vazia no momento.");
@@ -73,9 +80,12 @@ class Agenda {
         return lista; 
     }
 
+    // Edita um contato existente no banco de dados - UPDATE
     editar(id, nNome, nEmail, nTel) {
-        const stmt = this.db.prepare('UPDATE contatos SET nome = ?, email = ?, telefone = ? WHERE id = ?');
-        const resultado = stmt.run(nNome, nEmail, nTel, id);
+        const comando = this.db.prepare(
+            'UPDATE contatos SET nome = ?, email = ?, telefone = ? WHERE id = ?'
+        );
+        const resultado = comando.run(nNome, nEmail, nTel, id);
 
         if (resultado.changes > 0) {
             console.log("\n✅ Informações atualizadas com sucesso!");
@@ -84,9 +94,12 @@ class Agenda {
         }
     }
 
+    // Exclui um contato do banco de dados - DELETE
     excluir(id) {
-        const stmt = this.db.prepare('DELETE FROM contatos WHERE id = ?');
-        const resultado = stmt.run(id);
+        const comando = this.db.prepare(
+            'DELETE FROM contatos WHERE id = ?'
+        );
+        const resultado = comando.run(id);
 
         if (resultado.changes > 0) {
             console.log("\n✅ Contato removido com sucesso!");
