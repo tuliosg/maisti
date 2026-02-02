@@ -9,4 +9,10 @@ WHERE cliente_id = 3;
 -- Conferir mudanças
 SELECT * FROM Customers;
 
+-- Atualizar preço do 'Café 500g' para 31
+UPDATE Products
+SET preco = 31
+WHERE produto_id = 1;
+
+-- Conferir mudanças
 SELECT * FROM Products;
