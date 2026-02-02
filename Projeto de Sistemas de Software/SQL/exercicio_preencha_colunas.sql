@@ -2,7 +2,7 @@
 -- https://www.programiz.com/sql/online-compiler
 
 -- 1ª QUESTÃO
--- Coisinho, rodou código abaixo no Programiz.
+-- Coisinho rodou código abaixo no Programiz.
 -- Ao executar o código, a tabela Customers foi criada e populada com 30 registros.
 -- Porém, algumas colunas ficaram com valores NULL.
 -- Preencha as colunas Sobrenome e País com valores adequados.
