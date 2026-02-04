@@ -12,6 +12,7 @@ class SistemaVendas {
         /*
         
         */
+    }
 }
 
 // Não alterem o código abaixo
