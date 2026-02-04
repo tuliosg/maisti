@@ -4,7 +4,7 @@ const db = require('./database');
 class Estoque {
     cadastrar(nome, preco, qtd) {
         /*
-        
+        Cadastro de produto
         */
         console.log("\n✅ Produto cadastrado com sucesso!");
     }
