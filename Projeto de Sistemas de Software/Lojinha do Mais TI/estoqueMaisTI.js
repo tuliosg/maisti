@@ -3,32 +3,45 @@ const db = require('./database');
 
 class Estoque {
     cadastrar(nome, preco, qtd) {
-        /*
-        Cadastro de produto
-        */
+        const comando = db.prepare(
+            'INSERT INTO produtos (nome, preco, quantidade) VALUES (?, ?, ?)'
+        );
+        comando.run(nome, preco, qtd);
         console.log("\n✅ Produto cadastrado com sucesso!");
     }
 
     listarTudo() {
-        /*
-        
-        */
+        const produtos = db.prepare(
+            'SELECT * FROM produtos'
+        ).all();
+
+        console.log("\n--- LISTA COMPLETA DE PRODUTOS ---\n");
+        produtos.forEach(p => {
+            console.log(`ID: ${p.id} | ${p.nome.padEnd(15)} | R$ ${p.preco.toFixed(2)} | Qtd: ${p.quantidade}`);
+        });
     }
 
     atualizar(id, preco, qtd) {
-        /*
-        
-        */
+        const comando = db.prepare(
+            'UPDATE produtos SET preco = ?, quantidade = ? WHERE id = ?'
+        );
+        const resultado = comando.run(preco, qtd, id);
+
+        if (resultado.changes > 0) console.log("\n✅ Dados atualizados!");
+        else console.log("\n❌ Produto não encontrado.");
     }
 
     remover(id) {
-        /*
-        
-        */
+        const comando = db.prepare(
+            'DELETE FROM produtos WHERE id = ?'
+        );
+        const resultado = comando.run(id);
+
+        if (resultado.changes > 0) console.log("\n✅ Produto removido!");
+        else console.log("\n❌ Produto não encontrado.");
     }
 }
 
-// Não alterem o código abaixo
 class InterfaceEstoque {
     pausar() {
         console.log("\n-------------------------------------------");
@@ -37,7 +50,7 @@ class InterfaceEstoque {
 
     exibirMenu() {
         console.clear();
-        console.log("=== 📦  GESTÃO DE ESTOQUE ===");
+        console.log("=== 📦  GESTÃO DE ESTOQUE (GERENTE) ===");
         console.log("1. Cadastrar Produto");
         console.log("2. Listar Estoque");
         console.log("3. Atualizar Produto");
