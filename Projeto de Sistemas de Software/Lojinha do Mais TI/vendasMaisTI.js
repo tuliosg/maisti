@@ -3,19 +3,43 @@ const db = require('./database');
 
 class SistemaVendas {
     exibirCatalogo() {
-        /*
-        
-        */
+        // Mostra apenas produtos que têm pelo menos 1 unidade
+        const produtos = db.prepare(
+            'SELECT * FROM produtos WHERE quantidade > 0'
+        ).all();
+
+        console.log("\n--- PRODUTOS DISPONÍVEIS ---\n");
+        produtos.forEach(p => {
+            console.log(`ID: ${p.id} | ${p.nome.padEnd(15)} | Preço: R$ ${p.preco.toFixed(2)} | Estoque: ${p.quantidade}`);
+        });
+        return produtos;
     }
 
     registrarVenda(id, qtdVenda) {
-        /*
-        
-        */
+        // Busca o produto para conferir o estoque atual
+        const produto = db.prepare(
+            'SELECT * FROM produtos WHERE id = ?'
+        ).get(id);
+
+        if (!produto) {
+            console.log("\n❌ Produto não encontrado!");
+            return;
+        }
+
+        if (produto.quantidade >= qtdVenda) {
+            const novaQtd = produto.quantidade - qtdVenda;
+            const comando = db.prepare(
+                'UPDATE produtos SET quantidade = ? WHERE id = ?'
+            );
+            comando.run(novaQtd, id);
+
+            console.log(`\n✅ Venda realizada! ${qtdVenda}x ${produto.nome} entregue(s).`);
+        } else {
+            console.log(`\n❌ Estoque insuficiente! Temos apenas ${produto.quantidade} em estoque.`);
+        }
     }
 }
 
-// Não alterem o código abaixo
 class InterfaceVendas {
     pausar() {
         console.log("\n-------------------------------------------");
